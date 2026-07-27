@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SENTINEL VMS | VISION.IO</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Design System Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#dfe2ed",
+                    "on-primary-fixed": "#181c23",
+                    "surface-bright": "#3a393a",
+                    "inverse-primary": "#5b5e68",
+                    "on-tertiary": "#2b303c",
+                    "on-surface": "#e5e2e2",
+                    "on-error-container": "#ffdad6",
+                    "surface-variant": "#353435",
+                    "on-secondary": "#2d3137",
+                    "surface-dim": "#131314",
+                    "tertiary": "#c2c6d5",
+                    "on-surface-variant": "#c6c6cb",
+                    "primary": "#c3c6d1",
+                    "outline-variant": "#45474b",
+                    "on-background": "#e5e2e2",
+                    "error": "#ffb4ab",
+                    "primary-fixed-dim": "#c3c6d1",
+                    "surface-container-low": "#1c1b1c",
+                    "on-error": "#690005",
+                    "on-primary-fixed-variant": "#434750",
+                    "on-primary": "#2c3039",
+                    "surface-container-high": "#2a2a2a",
+                    "secondary-container": "#43474e",
+                    "background": "#131314",
+                    "on-secondary-fixed": "#181c22",
+                    "on-primary-container": "#868993",
+                    "secondary-fixed": "#dfe2eb",
+                    "surface-tint": "#c3c6d1",
+                    "surface": "#131314",
+                    "on-tertiary-container": "#848997",
+                    "secondary": "#c3c6ce",
+                    "tertiary-fixed-dim": "#c2c6d5",
+                    "on-secondary-container": "#b2b5bd",
+                    "surface-container": "#201f20",
+                    "tertiary-fixed": "#dee2f1",
+                    "surface-container-highest": "#353435",
+                    "tertiary-container": "#1d222d",
+                    "on-tertiary-fixed": "#161c26",
+                    "inverse-surface": "#e5e2e2",
+                    "error-container": "#93000a",
+                    "primary-container": "#1e222a",
+                    "secondary-fixed-dim": "#c3c6ce",
+                    "on-secondary-fixed-variant": "#43474e",
+                    "surface-container-lowest": "#0e0e0f",
+                    "on-tertiary-fixed-variant": "#424753",
+                    "inverse-on-surface": "#313031",
+                    "outline": "#909095",
+                    "status-success": "#2D6A4F",
+                    "status-warning": "#D97706",
+                    "status-danger": "#DC2626"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0px",
+                    "lg": "0px",
+                    "xl": "0px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "component-padding-y": "8px",
+                    "unit": "4px",
+                    "component-padding-x": "12px",
+                    "margin-page": "16px",
+                    "gutter": "12px"
+            },
+            "fontFamily": {
+                    "telemetry-sm": ["JetBrains Mono"],
+                    "label-caps": ["Inter"],
+                    "body-md": ["Inter"],
+                    "telemetry-md": ["JetBrains Mono"],
+                    "headline-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "telemetry-sm": ["11px", {"lineHeight": "14px", "fontWeight": "400"}],
+                    "label-caps": ["10px", {"lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "telemetry-md": ["13px", {"lineHeight": "18px", "fontWeight": "500"}],
+                    "headline-md": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #131314;
+            color: #e5e2e2;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+        .vms-border {
+            border: 1px solid #3A3F4B;
+        }
+        .ai-box {
+            border: 1px solid #c3c6d1;
+            position: absolute;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="flex flex-col h-screen">
+<!-- Top Control Bar -->
+<header class="h-[40px] w-full flex items-center justify-between px-4 bg-surface-container border-b border-outline-variant z-50">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">VISION.IO | VMS</span>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 bg-status-success"></span>
+<span class="font-telemetry-sm text-telemetry-sm text-on-surface-variant uppercase">Status: Active</span>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-6">
+<span class="font-telemetry-sm text-telemetry-sm text-on-surface-variant">STREAMS: <span class="text-on-surface">1/4</span></span>
+<span class="font-telemetry-sm text-telemetry-sm text-on-surface-variant">ENGINE: <span class="text-on-surface">GEMINI FLASH</span></span>
+<span class="font-telemetry-sm text-telemetry-sm text-on-surface-variant">EDGE: <span class="text-on-surface">YOLO11</span></span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1 hover:bg-surface-variant transition-colors duration-150 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">monitor_heart</span>
+</button>
+<button class="p-1 hover:bg-surface-variant transition-colors duration-150 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">grid_view</span>
+</button>
+<button class="p-1 hover:bg-surface-variant transition-colors duration-150 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+<button class="p-1 hover:bg-surface-variant transition-colors duration-150 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+</button>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- Left Panel: Camera Feeds -->
+<aside class="w-[280px] h-full flex flex-col bg-surface-container-low border-r border-outline-variant">
+<div class="p-4 border-b border-outline-variant">
+<h2 class="font-label-caps text-label-caps text-on-surface uppercase mb-4">CAMERA FEEDS</h2>
+<div class="space-y-3">
+<div>
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-1">CAMERA NAME</label>
+<input class="w-full bg-background border border-outline-variant px-2 py-1 text-body-sm focus:border-primary focus:ring-0 outline-none text-on-surface" placeholder="e.g. Lobby Entrance" type="text"/>
+</div>
+<div>
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-1">RTSP URL</label>
+<input class="w-full bg-background border border-outline-variant px-2 py-1 text-body-sm focus:border-primary focus:ring-0 outline-none text-on-surface" placeholder="rtsp://192.168.1.100:554/live" type="text"/>
+</div>
+<button class="w-full bg-primary-container border border-outline-variant text-on-surface font-label-caps text-label-caps py-2 hover:bg-surface-variant transition-colors duration-75 ease-in">
+                        ADD FEED
+                    </button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto hide-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 bg-surface-container-low z-10">
+<tr class="border-b border-outline-variant">
+<th class="px-4 py-2 font-label-caps text-label-caps text-on-surface-variant">NAME</th>
+<th class="px-4 py-2 font-label-caps text-label-caps text-on-surface-variant">SOURCE</th>
+<th class="px-4 py-2"></th>
+</tr>
+</thead>
+<tbody class="font-telemetry-sm text-telemetry-sm">
+<tr class="border-b border-outline-variant bg-primary-container">
+<td class="px-4 py-3 text-on-surface font-bold">Cam_01_Main</td>
+<td class="px-4 py-3 text-on-surface-variant">192.168.0.42</td>
+<td class="px-4 py-3 text-right">
+<span class="material-symbols-outlined text-status-danger cursor-pointer text-[18px]">close</span>
+</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-variant">
+<td class="px-4 py-3 text-on-surface">Cam_02_Rear</td>
+<td class="px-4 py-3 text-on-surface-variant">192.168.0.43</td>
+<td class="px-4 py-3 text-right">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer text-[18px]">close</span>
+</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-variant">
+<td class="px-4 py-3 text-on-surface">Cam_03_Load</td>
+<td class="px-4 py-3 text-on-surface-variant">192.168.0.45</td>
+<td class="px-4 py-3 text-right">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer text-[18px]">close</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</aside>
+<!-- Center Panel: Video Matrix -->
+<main class="flex-1 bg-background grid grid-cols-2 grid-rows-2 p-3 gap-3">
+<!-- Tile 1 -->
+<div class="vms-border relative group flex flex-col bg-surface-container-highest">
+<div class="absolute top-0 left-0 bg-surface-container-highest/90 px-2 py-1 flex items-center gap-3 z-20">
+<span class="font-telemetry-sm text-telemetry-sm text-on-surface">CAM_01_MAIN | 30 FPS</span>
+<span class="font-telemetry-sm text-telemetry-sm text-status-success">LIVE</span>
+</div>
+<div class="flex-1 relative overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="High-resolution security camera view of a modern industrial warehouse interior with steel shelving and concrete floors. The lighting is cold and clinical. Several shipping containers are visible. Professional surveillance aesthetic, sharp focus, high definition." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA1uXKd1eAWoka4U1MqBTxvHXBCKRqpED8-YDz6tmJohvLK89oUGZ2sDTxwpwiqMIHWD6y0p02OyYKaYzmUDfLRjBbXthcrF7EfqyymDOCbF-ERqvWIy0ycQHMIJ52CgKOSVzmcqdoAxibJRWkHw4PnE8kIG-ESfmN2ueQ3uX9wPJKqE-aAE04DTRHSbMucQz9nZSd7jFZE7EcL6oZfSm9KqPHhgYV7L8H9IQ99gmcvpU8rOtuV7otrGlsgxK2pWE0Wa6HMku9r-Hir')"></div>
+<!-- AI Bounding Boxes Mock -->
+<div class="ai-box top-[30%] left-[40%] w-[120px] h-[240px] border-primary">
+<div class="bg-primary text-on-primary px-1 font-telemetry-sm text-[9px] absolute -top-4 left-[-1px]">PERSON 94%</div>
+</div>
+<div class="ai-box top-[55%] left-[15%] w-[80px] h-[160px] border-status-warning">
+<div class="bg-status-warning text-white px-1 font-telemetry-sm text-[9px] absolute -top-4 left-[-1px]">FORKLIFT 82%</div>
+</div>
+</div>
+</div>
+<!-- Tile 2 -->
+<div class="vms-border relative flex flex-col bg-surface-container-highest">
+<div class="absolute top-0 left-0 bg-surface-container-highest/90 px-2 py-1 flex items-center gap-3 z-20">
+<span class="font-telemetry-sm text-telemetry-sm text-on-surface">CAM_02_REAR | 24 FPS</span>
+</div>
+<div class="flex-1 relative overflow-hidden grayscale">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Security camera footage of a dark rear loading dock area of a commercial building at night. High contrast black and white infrared style. Wet asphalt reflecting minimal light, chain-link fences, and industrial waste bins." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA6hsdWiWi-T-QFRfeZEHbYHyVvz1GGmmnunQlBiqttC_uf26unVliHakEW11manKpy2fZarsTrDA0Nk1r-SmxfRYhqYmPUlerlYJnsQmBNjH_3GmX8Il4tWwaF1GKueybAbFRlhbdZ4BhJTyebdOdtlWWSsGpdLiiM9eYQAK8zvZnl7dLvuo-dk5DL2PPlgY3DXiSES7Uxjne-ZqAHnUJkhZGdxoGm86PVpFqCqmjgbBn5PdH2XbEqNeXH8QSBq7LA5UTGOf92lSXp')"></div>
+<div class="absolute inset-0 flex items-center justify-center bg-black/40">
+<span class="font-telemetry-md text-telemetry-md text-on-surface-variant">BUFFERING...</span>
+</div>
+</div>
+</div>
+<!-- Tile 3 -->
+<div class="vms-border relative flex flex-col bg-surface-container-highest">
+<div class="absolute top-0 left-0 bg-surface-container-highest/90 px-2 py-1 flex items-center gap-3 z-20">
+<span class="font-telemetry-sm text-telemetry-sm text-on-surface">CAM_03_LOAD | 30 FPS</span>
+</div>
+<div class="flex-1 relative overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Fixed-angle surveillance view of a busy corporate office lobby during the day. Bright natural light from glass doors. People walking through turnstiles. Minimalist architecture with marble floors and dark wood accents. High operational clarity." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBABgJwo9TI5YVsSUejh24pX9feczB935fRwY4OUNRWvh2XWosCRuGaL44-2O2bakDbvzxK4qPsJIytFzZKQoS1ExRmPkJYPqyoTL7mHM15koZVqowXqY2mI6RnTbd3z3Tp3zGD6vQbrcdCBR0PorJw09cch1Ffxdkud5hzsQS-MnENApcAS6mXv6HKyZTO0DRDNE4MZ9h567WWEdH5Ixm2kSt1ybzIRUJHKZO46jMbeWpxfj8N3fJgoGCtUMTAGstketoJcd_SQoBX')"></div>
+<div class="ai-box top-[45%] left-[60%] w-[100px] h-[200px] border-primary">
+<div class="bg-primary text-on-primary px-1 font-telemetry-sm text-[9px] absolute -top-4 left-[-1px]">PERSON 91%</div>
+</div>
+</div>
+</div>
+<!-- Tile 4 -->
+<div class="vms-border relative flex flex-col bg-surface-container-highest">
+<div class="absolute top-0 left-0 bg-surface-container-highest/90 px-2 py-1 flex items-center gap-3 z-20">
+<span class="font-telemetry-sm text-telemetry-sm text-on-surface">CAM_04_PERIMETER | 15 FPS</span>
+</div>
+<div class="flex-1 relative overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Outdoor security camera view of a high-security fence line surrounding a facility. The scene is illuminated by harsh yellow sodium street lights. Gravel path and heavy-duty gate. Gritty, industrial, utilitarian surveillance perspective." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD7ySsfjVYV1mw-SVsrV8Ih9VNj7exxomYtLAq81vr5B_b1Rfjkh_1-ataMhCaBf6Wd_J3Z4gqGyX-2hO0XJkdzoDKHazMieGszbykLt4S66ItIpcTNBmUIo0QUlZthukmBmdloUqQXH5eHzIdhAEcbYfsF2-I1BueOsWP0AbMfGsH4qVE7Yg1ZD5awH9OuwNbnEpnBzUxJusZgsVUezLTAaeftIka5DMiesPs5skCCo2mWCdzj1GdlkJG8V7V_xydeH37-ex3lbsZZ')"></div>
+</div>
+</div>
+</main>
+<!-- Right Panel: Detection Log -->
+<aside class="w-[320px] h-full flex flex-col bg-surface-container-low border-l border-outline-variant">
+<div class="p-4 border-b border-outline-variant">
+<h2 class="font-label-caps text-label-caps text-on-surface uppercase">DETECTION LOG</h2>
+</div>
+<div class="flex-1 overflow-y-auto p-3 space-y-3 hide-scrollbar">
+<!-- Event Card 1 -->
+<div class="vms-border bg-surface-container p-2 flex gap-3">
+<div class="w-[90px] h-[60px] bg-black shrink-0 relative overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center grayscale" data-alt="Small thumbnail security snapshot of a person wearing a dark jacket walking through a doorway. Grainy industrial surveillance style, black and white." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDfXpHz1LNGd3G1NkAt3uGEmK2ZV6FFsBZXbQN7Sq0BBDCT_lEJ2oHaWVA3FfgUCaDHLyb5-YPvFvZ7sb1Ynk4qYOzcpmHZW8fUxOeit0zMQri412o9iuHTpRbSetVmx1Q4Gz6_ZWVJy3S6Jp3KTIaAwDgETOL_HCTK2x9gjnMwTuD-tmSlK8Jc4KxyoEfzoMINfh9f0lzMc41mof7Uv-38MqFDHT91s1fICz8X0AXNxhwbQripiFPYy0HUNkpVFeuQTpyCXhxNHD6m')"></div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<div>
+<h3 class="font-telemetry-md text-telemetry-md text-on-surface">Cam_01_Main</h3>
+<p class="font-telemetry-sm text-telemetry-sm text-on-surface-variant">14:22:08.412</p>
+</div>
+<span class="vms-border border-status-danger text-status-danger font-label-caps text-[9px] px-1">HIGH</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-tight mb-2">Unauthorized access detected in Zone A.</p>
+<ul class="font-telemetry-sm text-telemetry-sm text-primary list-disc list-inside">
+<li>Person (98%)</li>
+<li>Backpack (71%)</li>
+</ul>
+</div>
+</div>
+<!-- Event Card 2 -->
+<div class="vms-border bg-surface-container p-2 flex gap-3">
+<div class="w-[90px] h-[60px] bg-black shrink-0 relative overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Small thumbnail security snapshot of a yellow forklift moving between industrial shelves. High definition color, utilitarian style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC117fa43VxT6148s3_U6J96Jtj6SXR93BONsumLBnkgcbFTZ7cxw2wYF1KjL7TfkJjtKV2PzkRrxp5n3LXFZcByZWLmHDmNOFMCd5MAJQGzGqRIyTgbrQtOr62KjQPMg5OC8OXv-P0qj-fACyLlmJQVmV9iiGNncnglSdZr2yGUpmXNx9d5rzj90N4Lhmy3NaxcsMt5p0N6VjhJqmgeRMyW98IC7sBpw6RcLZzyZUWkLA-SaB7AUna6sbnSS6BgX713WSyXayDGHKg')"></div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<div>
+<h3 class="font-telemetry-md text-telemetry-md text-on-surface">Cam_03_Load</h3>
+<p class="font-telemetry-sm text-telemetry-sm text-on-surface-variant">14:21:55.109</p>
+</div>
+<span class="vms-border border-status-warning text-status-warning font-label-caps text-[9px] px-1">MED</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-tight mb-2">Vehicle movement in restricted corridor.</p>
+<ul class="font-telemetry-sm text-telemetry-sm text-primary list-disc list-inside">
+<li>Forklift (82%)</li>
+</ul>
+</div>
+</div>
+<!-- Event Card 3 -->
+<div class="vms-border bg-surface-container p-2 flex gap-3">
+<div class="w-[90px] h-[60px] bg-black shrink-0 relative overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center grayscale" data-alt="Small thumbnail security snapshot showing an empty office lobby corridor with sterile lighting and glass surfaces. Clinical monochrome aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBsAsxSxom7qohKoxsAJfrT3nlNPq8wqpMVUy5Iiu5PEvxx1cbY2ls6kiJ9ka_Eg_XCefyZnopvKKHDUsuC1kADIY9lMOIl2Mv5h-eg3-PAQ-qgCHw2CsUGiCerbq9kCSxIIwpnEsYZaD6gA6cYldQ1NHbeax3Uwb05567tCcMRjclcZEChTJHpj2T9nbf7_PaNJRKnPnzTtuB5QrlH8XzdkXYkD206q3IIu4Osvg63EUssc2ayaCgpotiLs0_clrCgJYa8O91_JPOk')"></div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<div>
+<h3 class="font-telemetry-md text-telemetry-md text-on-surface">Cam_01_Main</h3>
+<p class="font-telemetry-sm text-telemetry-sm text-on-surface-variant">14:19:30.002</p>
+</div>
+<span class="vms-border border-status-success text-status-success font-label-caps text-[9px] px-1">LOW</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-tight mb-2">Routine motion at main entrance.</p>
+<ul class="font-telemetry-sm text-telemetry-sm text-primary list-disc list-inside">
+<li>Person (74%)</li>
+</ul>
+</div>
+</div>
+<!-- Event Card 4 -->
+<div class="vms-border bg-surface-container p-2 flex gap-3">
+<div class="w-[90px] h-[60px] bg-black shrink-0 relative overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Surveillance snapshot of a perimeter fence line showing a delivery truck approaching. Industrial lighting, cold blue tones." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBUiAFHYEsZX6cduvuH3CqsxhItmuMoeLYmUeBtv-a9u-_tU97Y2OJeXzKR65LecbQycIxugTYy4QYViK_5DWk_2Jo72Fe69FR61miJHSNca0EJImMLtaiAIpjipOa-rBvdtKswfctH5JeUARgDG2Qv4hD2sWbkNdYFVWk6sd2cnA8rvxbxGX1avtrf8HWqmENXIKutPLvTRl8ps4qVaKlvhyl3V-ZbUd0OnhDEnWBHomvaZ7U-_SieNBjpObqtT5uQu2NzkzO-Ri21')"></div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<div>
+<h3 class="font-telemetry-md text-telemetry-md text-on-surface">Cam_04_Perim</h3>
+<p class="font-telemetry-sm text-telemetry-sm text-on-surface-variant">14:15:12.881</p>
+</div>
+<span class="vms-border border-outline text-on-surface-variant font-label-caps text-[9px] px-1">INFO</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-tight mb-2">Delivery truck identification.</p>
+<ul class="font-telemetry-sm text-telemetry-sm text-primary list-disc list-inside">
+<li>Truck (99%)</li>
+<li>Plate: 8V-4412</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Panel Footer / Summary -->
+<div class="p-3 border-t border-outline-variant bg-surface-container-low">
+<div class="flex justify-between items-center font-telemetry-sm text-telemetry-sm">
+<span class="text-on-surface-variant">LOG RETENTION: 7D</span>
+<span class="text-primary">DB: CONNECTED</span>
+</div>
+</div>
+</aside>
+</div>
+<!-- Micro-interaction Scripts -->
+<script>
+        // Simple logic to simulate active state on cameras
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('click', () => {
+                document.querySelectorAll('tbody tr').forEach(r => r.classList.remove('bg-primary-container'));
+                row.classList.add('bg-primary-container');
+            });
+        });
+
+        // Matrix layout toggle simulation
+        let layoutGrid = document.querySelector('main');
+        document.querySelector('button .material-symbols-outlined[data-icon="grid_view"]').parentElement.addEventListener('click', () => {
+            if (layoutGrid.classList.contains('grid-cols-2')) {
+                layoutGrid.classList.remove('grid-cols-2', 'grid-rows-2');
+                layoutGrid.classList.add('grid-cols-1', 'grid-rows-1');
+            } else {
+                layoutGrid.classList.remove('grid-cols-1', 'grid-rows-1');
+                layoutGrid.classList.add('grid-cols-2', 'grid-rows-2');
+            }
+        });
+    </script>
+</body></html>

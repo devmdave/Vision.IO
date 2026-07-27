@@ -1,0 +1,292 @@
+/* Flat Matte Dark Industrial Theme for Vision.IO */
+
+* {
+    font-family: 'Inter', -apple-system, Roboto, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #e5e2e2;
+}
+
+/* Base Canvas / Main Window */
+QMainWindow {
+    background-color: #131314;
+}
+
+QWidget {
+    background-color: transparent;
+}
+
+/* Headers & Typography Classes */
+QLabel#sectionHeader {
+    font-family: 'Inter';
+    font-size: 10px;
+    font-weight: 700;
+    color: #e5e2e2;
+    letter-spacing: 0.08em;
+    padding-bottom: 4px;
+}
+
+QLabel#inputLabel {
+    font-family: 'Inter';
+    font-size: 10px;
+    font-weight: 700;
+    color: #c6c6cb;
+    letter-spacing: 0.08em;
+}
+
+/* Level 1 Container (Panels/Sidebars) */
+QFrame#cameraManager, QFrame#cardFrame {
+    background-color: #1c1b1c;
+    border: none;
+}
+
+/* Scroll Area base styling */
+QScrollArea {
+    border: none;
+    background-color: transparent;
+}
+
+QScrollArea QWidget {
+    background-color: transparent;
+}
+
+/* Input Fields (Flat matte style) */
+QLineEdit {
+    background-color: #131314;
+    border: 1px solid #45474b;
+    border-radius: 0px;
+    padding: 6px 8px;
+    color: #e5e2e2;
+    selection-background-color: #c3c6d1;
+    selection-color: #1c1b1c;
+}
+
+QLineEdit:focus {
+    border: 1px solid #c3c6d1;
+    background-color: #1c1b1c;
+}
+
+QLineEdit:disabled {
+    background-color: #1c1b1c;
+    color: #c6c6cb;
+    border: 1px solid #3A3F4B;
+}
+
+/* ComboBoxes (Dropdown UI settings) */
+QComboBox {
+    background-color: #131314;
+    border: 1px solid #45474b;
+    border-radius: 0px;
+    padding: 6px 10px;
+    color: #e5e2e2;
+    min-width: 120px;
+}
+
+QComboBox:focus {
+    border-color: #c3c6d1;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px;
+    border-left: 1px solid #45474b;
+}
+
+QComboBox QAbstractItemView {
+    background-color: #131314;
+    border: 1px solid #3A3F4B;
+    selection-background-color: #c3c6d1;
+    selection-color: #1c1b1c;
+}
+
+/* Flat Buttons (Utilitarian) */
+QPushButton {
+    background-color: #2c313a;
+    border: 1px solid #3A3F4B;
+    border-radius: 0px;
+    padding: 6px 12px;
+    font-weight: bold;
+    color: #e5e2e2;
+}
+
+QPushButton:hover {
+    background-color: #3e4451;
+    border-color: #c3c6d1;
+}
+
+QPushButton:pressed {
+    background-color: #1e222a;
+}
+
+QPushButton:disabled {
+    background-color: #1c1b1c;
+    color: #c6c6cb;
+    border: 1px solid #3A3F4B;
+}
+
+/* Accent Button (Primary action button style) */
+QPushButton#primaryButton {
+    background-color: #3A3F4B;
+    border: 1px solid #45474b;
+    color: #ffffff;
+}
+
+QPushButton#primaryButton:hover {
+    background-color: #2c313a;
+    border-color: #c3c6d1;
+}
+
+/* Red Delete Action Button */
+QPushButton#dangerButton {
+    background-color: transparent;
+    color: #DC2626;
+    border: 1px solid #DC2626;
+}
+
+QPushButton#dangerButton:hover {
+    background-color: #DC2626;
+    color: #ffffff;
+}
+
+/* Green Action Button */
+QPushButton#successButton {
+    background-color: transparent;
+    color: #2D6A4F;
+    border: 1px solid #2D6A4F;
+}
+
+QPushButton#successButton:hover {
+    background-color: #2D6A4F;
+    color: #ffffff;
+}
+
+/* Top Bar Container styling */
+QWidget#topBar {
+    background-color: #201f20;
+    border-bottom: 1px solid #45474b;
+}
+
+/* Flat Tab Bar layout */
+QTabWidget::pane {
+    border: 1px solid #3A3F4B;
+    background-color: #131314;
+    top: -1px;
+}
+
+QTabBar::tab {
+    background-color: #1c1b1c;
+    border: 1px solid #3A3F4B;
+    border-bottom: none;
+    padding: 8px 16px;
+    margin-right: 4px;
+    border-radius: 0px;
+    font-weight: bold;
+    color: #c6c6cb;
+}
+
+QTabBar::tab:hover {
+    background-color: #201f20;
+    color: #e5e2e2;
+}
+
+QTabBar::tab:selected {
+    background-color: #131314;
+    border-color: #3A3F4B;
+    color: #e5e2e2;
+    border-bottom: 2px solid #c3c6d1;
+}
+
+/* Table Widget High Density */
+QTableWidget {
+    background-color: #131314;
+    border: 1px solid #3A3F4B;
+    gridline-color: #3A3F4B;
+    border-radius: 0px;
+}
+
+QTableWidget::item {
+    padding: 4px;
+    border-bottom: 1px solid #3A3F4B;
+}
+
+QTableWidget::item:selected {
+    background-color: #2C313A;
+    color: #e5e2e2;
+}
+
+QHeaderView::section {
+    background-color: #1c1b1c;
+    color: #c6c6cb;
+    padding: 6px;
+    border: none;
+    border-bottom: 1px solid #3A3F4B;
+    font-weight: bold;
+}
+
+/* Flat List Widget (alerts sidebar) */
+QListWidget {
+    background-color: #1c1b1c;
+    border: 1px solid #3A3F4B;
+    border-radius: 0px;
+    padding: 4px;
+}
+
+QListWidget::item {
+    background-color: #201f20;
+    border: 1px solid #3A3F4B;
+    padding: 0px;
+    margin-bottom: 6px;
+}
+
+QListWidget::item:hover {
+    background-color: #2C313A;
+    border-color: #c3c6d1;
+}
+
+QListWidget::item:selected {
+    background-color: #2C313A;
+    border-color: #c3c6d1;
+}
+
+/* Minimal Flat Scrollbar design */
+QScrollBar:vertical {
+    border: none;
+    background: #131314;
+    width: 8px;
+    margin: 0px;
+}
+
+QScrollBar::handle:vertical {
+    background: #3A3F4B;
+    min-height: 20px;
+    border-radius: 0px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: #45474b;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+QScrollBar:horizontal {
+    border: none;
+    background: #131314;
+    height: 8px;
+    margin: 0px;
+}
+
+QScrollBar::handle:horizontal {
+    background: #3A3F4B;
+    min-width: 20px;
+    border-radius: 0px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background: #45474b;
+}
+
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
+    width: 0px;
+}
